@@ -1,13 +1,12 @@
 
-from abc import ABC, abstractmethod
-
-class Personaje(ABC):
+class Personaje:
     def __init__(self, nombre: str, rol: str, vida: int, daño: int, nivel: int) -> None:
         self._nombre = nombre
         self._rol = rol
         self.vida = vida
         self._daño = daño
         self._nivel = nivel
+        print("El personaje ha sido creado.")
 
     @property
     def nombre(self) -> str:
