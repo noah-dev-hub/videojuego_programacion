@@ -39,5 +39,13 @@ class Personaje:
     @nivel.setter
     def nivel(self, nivel: int) -> None:
         self._nivel = nivel
+        
+# Podemos usar esta funcion para mas adelante. 
+    def esta_vivo(self) -> bool:
+        return self.vida > 0
+
+    def recibir_daño(self, cantidad: int) -> None:
+        self.vida = max(0, self.vida - cantidad)
+
 
     
