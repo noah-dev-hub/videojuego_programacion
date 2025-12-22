@@ -17,9 +17,18 @@ class Pocion:
         return self.__efecto
     
     @efecto.setter
-    def tipo(self, efecto) -> int:
+    def efecto(self, efecto) -> int:
         self.__efecto = efecto
 
-    def tomar_pocion(self):
-        pass
+    def tomar_pocion(self, personaje):
+        if self.__tipo == "Recuperación de vida":
+            personaje.vida += self.__efecto
+            print(f"{personaje.nombre} recupera {self.__efecto} de vida")
 
+        elif self.__tipo == "Daño":
+            personaje.daño += self.__efecto
+            print(f"{personaje.nombre} aumenta su daño en {self.__efecto}")
+
+        elif self.__tipo == "Escudo":
+            personaje.vida += self.__efecto
+            print(f"{personaje.nombre} obtiene un escudo de {self.__efecto}")
