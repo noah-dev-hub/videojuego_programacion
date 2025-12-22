@@ -11,7 +11,3 @@ class Mago(Personaje, Habilidad):
 
     def defender(self) -> str:
         return f"El mago {self.nombre} se defiende con su magia."
-
-    def tomar_pocion(self) -> str:
-        self.vida += 20
-        return f"El mago {self.nombre} se toma una poción de recuperación de vida. Recupera 20 puntos."

@@ -13,9 +13,5 @@ class Habilidad(ABC):
         pass
 
     @abstractmethod
-    def tomar_pocion(self) -> str: 
-        pass
-    
-    @abstractmethod
     def habilidad_especial(self) -> str:
         pass

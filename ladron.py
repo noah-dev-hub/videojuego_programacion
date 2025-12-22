@@ -11,7 +11,3 @@ class Ladron(Personaje, Habilidad):
 
     def defender(self) -> str:
         return f"El ladrón {self.nombre} se defiende esquivando."
-
-    def tomar_pocion(self) -> str:
-        self.vida += 20
-        return f"El ladrón {self.nombre} se toma una poción de recuperación de vida. Recupera 20 puntos."
