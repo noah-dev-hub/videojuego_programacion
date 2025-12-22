@@ -13,9 +13,13 @@ class Pocion:
         self.__tipo = tipo
 
     @property
-    def efecto(self) -> str:
+    def efecto(self) -> int:
         return self.__efecto
     
     @efecto.setter
-    def tipo(self, efecto) -> str:
+    def tipo(self, efecto) -> int:
         self.__efecto = efecto
+
+    def tomar_pocion(self):
+        pass
+
