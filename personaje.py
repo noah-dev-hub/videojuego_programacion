@@ -46,10 +46,10 @@ class Personaje:
 
     def recibir_daño(self, cantidad: int) -> None: # Añade feedbback
         self.vida = max(0, self.vida - cantidad)
-        if self.vida == 0:
+        if not self.esta_vivo(): # Implementa la función 'esta_vivo()'
             print(f"¡Oh, no!¡{self.nombre} ha muerto!")
         else:
-            print(f"¡{self.nombre} ha sido herido!")
+            print(f"¡{self.nombre} ha sido herido!\nVida: {self.vida}")
 
 
     
