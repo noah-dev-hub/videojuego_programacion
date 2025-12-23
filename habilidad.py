@@ -3,15 +3,14 @@ from abc import ABC
 from abc import abstractmethod
 
 class Habilidad(ABC):
-# Devuelve none, en los modulos guerrero, ladron, mago, devuelve str. Es confuso
     @abstractmethod
-    def atacar(self) -> str:   
+    def atacar(self) -> None:   
         pass
 
     @abstractmethod
-    def defender(self) -> str:
+    def defender(self) -> None:
         pass
 
     @abstractmethod
-    def habilidad_especial(self) -> str:
+    def habilidad_especial(self) -> None:
         pass
