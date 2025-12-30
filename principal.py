@@ -21,20 +21,17 @@ vida.tomar_pocion(guerrero)
 print("Vida después:", guerrero.vida)
 """
 
-# Mira si te parece bien este tipo de menú para el combate, si quieres tocarlo hazlo.
 # Notas:
-# - En mis clases, debo revisar los feedbacks. Devuelven frases repetidas o que no se deberían mostrar en determinados momentos. La función 'defender()' es la que dice cosas más raras.
-# - Pendiente implementar pociones. Al avanzar de combate, el personaje no tiene vida suficiente y muere en seguida.
-# - El trabajo de Stivan funciona estupendo. Tal vez pueda revisar sus clases para ver cómo implementar el feedback en las mías.
-# - Tal vez haya que hacer que las pociones recuperen más vida
+# - Defensa implementada.
+# - Pendiente implementar pociones. Al avanzar de combate, el personaje no tiene vida suficiente y muere en seguida. Tal vez haya que hacer que las pociones recuperen más vida
 
 def combate(personaje, enemigo) -> bool:
-    contador_habilidad_enemigo = 0
+    contador_habilidad_enemigo = 0 # Sirve para conseguir que la habilidad del enemigo solo actúe una vez
     print(f"\n¡{personaje.nombre} se enfrenta a {enemigo.nombre}!")
     print(f"Vida {enemigo.nombre}: {enemigo.vida}")
 
     while personaje.esta_vivo() and enemigo.esta_vivo():
-        print("\n--¿Qué quieres hacer?--") # Redundante si se va a preguntar lo mismo más adelante.
+        defensa = False  # Resetea la variable defensa a False en cada turno con tal de que no se esté defendiendo para siempre
         print("1- Atacar")
         print("2- Defender")
         print("3- Habilidad especial")
@@ -45,15 +42,15 @@ def combate(personaje, enemigo) -> bool:
         match opcion:
             case "1":
                 personaje.atacar(enemigo)
-                print(f"El guerrero {personaje.nombre} ataca con su espada.")
             case "2":
-                personaje.defender(enemigo)
+                defensa = personaje.defender() # Se guarda aquí el return de la función
             case "3":
                 personaje.habilidad_especial(enemigo)
             case _:
                 print(f"{personaje.nombre} no sabe hacer eso.")
                 continue
 
+        print(f"Enemigo: {enemigo.vida}") # He sacado este print aquí para no tener que repetir esta línea en cada ataque de cada personajee
         # Si el enemigo muere, termina el combate
         if not enemigo.esta_vivo():
             print(f"\n{enemigo.nombre} ha sido derrotado.")
@@ -66,7 +63,8 @@ def combate(personaje, enemigo) -> bool:
             contador_habilidad_enemigo = 1
 
         # Turno del enemigo
-        enemigo.atacar(personaje)
+        enemigo.atacar(personaje, defensa) # Es aquí donde se manda la variable 'defensa' para que cumpla su función final
+        print(f"{personaje.nombre}: {personaje.vida}") # Ésta igual que con el enemigo
 
     return personaje.esta_vivo()
                 

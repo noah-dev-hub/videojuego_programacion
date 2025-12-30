@@ -4,11 +4,10 @@ class Orco(Enemigo):
     def __init__(self, nombre: str = "Orco", vida: int = 120, daño: int = 25, nivel: int = 1) -> None:
         super().__init__(nombre, vida, daño, nivel)
 
-    def atacar(self, personaje) -> None: #Voy a hacer tambien sin returns innecesarios
+    def atacar(self, personaje, defensa) -> None: # Recibe la variable 'defensa' y se la manda a la función 'recibir_daño()'
         # El orco pega al personaje
-        personaje.recibir_daño(self.daño)
         print(f"El orco {self.nombre} ataca con su garrote.")
-        print(f"{personaje.nombre}: {personaje.vida}")
+        personaje.recibir_daño(self.daño, defensa)
 
     def habilidad_especial(self) -> None:
         # Se enfurece: sube daño

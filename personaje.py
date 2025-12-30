@@ -40,16 +40,15 @@ class Personaje:
     def nivel(self, nivel: int) -> None:
         self._nivel = nivel
         
-# Podemos usar esta funcion para mas adelante. 
     def esta_vivo(self) -> bool:
         return self.vida > 0
 
-    def recibir_daño(self, cantidad: int) -> None: # Añade feedbback; esta perfecto me gusta.
-        self.vida = max(0, self.vida - cantidad)
-        if not self.esta_vivo(): # Implementa la función 'esta_vivo()'
-            print(f"¡Oh, no!¡{self.nombre} ha muerto!")
+    def recibir_daño(self, cantidad: int, defensa) -> None:
+        if defensa == True:
+            pass
         else:
-            print(f"¡{self.nombre} ha sido herido!\nVida: {self.vida}")
-
-
-    
+            self.vida = max(0, self.vida - cantidad)
+            if not self.esta_vivo(): # Implementa la función 'esta_vivo()'
+                print(f"¡Oh, no!¡{self.nombre} ha muerto!")
+            else:
+                print(f"¡{self.nombre} ha sido herido!")
