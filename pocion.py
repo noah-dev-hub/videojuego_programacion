@@ -1,4 +1,5 @@
-class Pocion:
+
+class Pocion():
     def __init__(self, tipo: str, efecto: int) -> None:
         # Atributos privados
         self.__tipo = tipo
@@ -20,15 +21,33 @@ class Pocion:
     def efecto(self, efecto) -> int:
         self.__efecto = efecto
 
+    def tomar_pocion(self):
+        pass
+            
+# Las pociones son objetos que heredan de 'Pocion'
+class Vida(Pocion):
+    def  __init__(self, tipo = "Recuperación de vida", efecto = 30):
+        super().__init__(tipo, efecto)
+
     def tomar_pocion(self, personaje):
-        if self.__tipo == "Recuperación de vida":
-            personaje.vida += self.__efecto
-            print(f"{personaje.nombre} recupera {self.__efecto} de vida")
+        print(f"{personaje.nombre} se toma una poción de {self.tipo}.")
+        personaje.vida += self.efecto
+        print(f"{personaje.nombre} recupera {self.efecto} puntos de vida")
 
-        elif self.__tipo == "Daño":
-            personaje.daño += self.__efecto
-            print(f"{personaje.nombre} aumenta su daño en {self.__efecto}")
+class Daño(Pocion):
+    def  __init__(self, tipo = "Aumento de daño", efecto = 15):
+        super().__init__(tipo, efecto)
 
-        elif self.__tipo == "Escudo":
-            personaje.vida += self.__efecto
-            print(f"{personaje.nombre} obtiene un escudo de {self.__efecto}")
+    def tomar_pocion(self, personaje):
+        print(f"{personaje.nombre} se toma una poción de {self.tipo}.")
+        personaje.daño += self.efecto
+        print(f"{personaje.nombre} aumenta su daño en {self.efecto} puntos.")
+
+class Escudo(Pocion): # Le quita daño al enemigo, pero se lo quita para siempre. Si queremos que sea así, perfecto. Si no, hay que encontrar la forma de arreglarlo.
+    def  __init__(self, tipo = "Generación de escudo", efecto = 15):
+        super().__init__(tipo, efecto)
+
+    def tomar_pocion(self, personaje, enemigo):
+        print(f"{personaje.nombre} se toma una poción de {self.tipo}.")
+        enemigo.daño -= self.efecto
+        print(f"{personaje.nombre} obtiene un escudo de {self.efecto} puntos.")

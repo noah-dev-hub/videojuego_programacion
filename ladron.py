@@ -17,5 +17,5 @@ class Ladron(Personaje, Habilidad):
     def habilidad_especial(self, enemigo) -> None:
         print(f"¡El ladrón {self.nombre} ha envenenado su arma!")
         self.daño += 30
-        self.atacar
+        self.atacar(enemigo)
         self.daño -= 30

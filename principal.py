@@ -8,24 +8,20 @@ from orco import Orco
 from arpia import Arpia
 from oscar import Oscar
 
-import pocion
-
-vida = pocion.Pocion("Recuperación de vida", 10)
-daño = pocion.Pocion("Daño", 10)
-escudo = pocion.Pocion("Escudo", 10)
-
-"""
-# Pruebas para ver si las pociones funcionan. La poción tiene el método tomar_pocion, recibe un personaje y modifica directamente sus atributos según el tipo de poción.
-print("Vida antes:", guerrero.vida)
-vida.tomar_pocion(guerrero)
-print("Vida después:", guerrero.vida)
-"""
+from pocion import Vida, Daño, Escudo
 
 # Notas:
 # - Defensa implementada.
-# - Pendiente implementar pociones. Al avanzar de combate, el personaje no tiene vida suficiente y muere en seguida. Tal vez haya que hacer que las pociones recuperen más vida
+# - Pociones implementadas. Fíjate especialmente en la de escudo a ver si te gusta. Te la he descrito en su clase
+# - Elección de personajes implementada
+# - Pendiente implementar las subidas de nivel
 
 def combate(personaje, enemigo) -> bool:
+    # Cada tipo de poción es ahora un objeto distinto que hereda de 'Pocion'
+    pocion_vida = Vida()
+    pocion_daño = Daño()
+    pocion_escudo = Escudo()
+    cantidad_pociones = 3 # Variable para que las pociones no sean infinitas
     contador_habilidad_enemigo = 0 # Sirve para conseguir que la habilidad del enemigo solo actúe una vez
     print(f"\n¡{personaje.nombre} se enfrenta a {enemigo.nombre}!")
     print(f"Vida {enemigo.nombre}: {enemigo.vida}")
@@ -35,6 +31,7 @@ def combate(personaje, enemigo) -> bool:
         print("1- Atacar")
         print("2- Defender")
         print("3- Habilidad especial")
+        print("4- Tomar poción")
         print("---------------------------")
         
         opcion = input(f"¿Qué va a hacer {personaje.nombre}? ")
@@ -46,6 +43,25 @@ def combate(personaje, enemigo) -> bool:
                 defensa = personaje.defender() # Se guarda aquí el return de la función
             case "3":
                 personaje.habilidad_especial(enemigo)
+            case "4": # Hace otro match-case para elegir la poción
+                if cantidad_pociones > 0:
+                    print("1- Vida\n2- Daño\n3- Escudo")
+                    elegir_pocion = input("¿Qué poción deseas tomar? ")
+                    match elegir_pocion: 
+                        case "1":
+                            pocion_vida.tomar_pocion(personaje)
+                        case "2":
+                            pocion_daño.tomar_pocion(personaje)
+                        case "3":
+                            pocion_escudo.tomar_pocion(personaje, enemigo)
+                        case _:
+                            print("No tienes esa poción")
+                            continue
+                    cantidad_pociones -= 1 # Resta una poción
+                    print(f"Pociones restantes: {cantidad_pociones}")
+                else:
+                    print("No quedan pociones disponibles.")
+                    continue
             case _:
                 print(f"{personaje.nombre} no sabe hacer eso.")
                 continue
@@ -67,12 +83,26 @@ def combate(personaje, enemigo) -> bool:
         print(f"{personaje.nombre}: {personaje.vida}") # Ésta igual que con el enemigo
 
     return personaje.esta_vivo()
-                
-def iniciar_juego():
-    # Prueba de combate completo
-    personaje = Guerrero("Cadalas")
 
+# Prueba de combate completo
+def iniciar_juego():
     enemigos = [Orco(), Arpia(), Oscar()]
+    while True:
+        print("1- Guerrero\n2- Mago\n3- Ladrón")
+        opcion = input("¿Qué personaje elegirás? ")
+        nombre = input("¿Qué nombre le pondrás? ")
+        match opcion:
+            case "1":
+                personaje = Guerrero(nombre)
+                break
+            case "2":
+                personaje = Mago(nombre)
+                break
+            case "3":
+                personaje = Ladron(nombre)
+                break
+            case _:
+                print("Ese personaje no está disponible.")
 
     for enemigo in enemigos:
         gana = combate(personaje, enemigo)
