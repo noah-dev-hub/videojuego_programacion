@@ -12,16 +12,20 @@ from pocion import Vida, Daño, Escudo
 
 # Notas:
 # - Defensa implementada.
-# - Pociones implementadas. Fíjate especialmente en la de escudo a ver si te gusta. Te la he descrito en su clase
-# - Elección de personajes implementada
-# - Pendiente implementar las subidas de nivel
+# - Pociones implementadas. Fíjate especialmente en la de escudo a ver si te gusta. Te la he descrito en su clase.
+# - Elección de personajes implementada.
+# - Subida de nivel implementada.
+
+# HECHO. Podría considerarse que el juego está terminado, aunque hay detalles de los que me gustaría saber tu opinión en cuanto a nivelar el juego:
+#   1) El efecto de las pociones, la función de la de escudo y el hecho de que se rellenen en cada combate.
+#   2) La función de subida de nivel, en concreto la parte en la que recupera la vida por completo al iniciar cada combate.
 
 def combate(personaje, enemigo) -> bool:
     # Cada tipo de poción es ahora un objeto distinto que hereda de 'Pocion'
     pocion_vida = Vida()
     pocion_daño = Daño()
     pocion_escudo = Escudo()
-    cantidad_pociones = 3 # Variable para que las pociones no sean infinitas
+    cantidad_pociones = 3 # Variable para que las pociones no sean infinitas. Al estar generadas en esta parte del programa, se rellenan al inicio de cada combate. No sé si queremos que sea así
     contador_habilidad_enemigo = 0 # Sirve para conseguir que la habilidad del enemigo solo actúe una vez
     print(f"\n¡{personaje.nombre} se enfrenta a {enemigo.nombre}!")
     print(f"Vida {enemigo.nombre}: {enemigo.vida}")
@@ -84,6 +88,14 @@ def combate(personaje, enemigo) -> bool:
 
     return personaje.esta_vivo()
 
+# Función para subir de nivel después de cada combate. Amplía vida y sube el daño.
+def subir_nivel(personaje, vida_personaje_default):
+    personaje.nivel += 1
+    personaje.vida = vida_personaje_default + 15
+    personaje.daño += 10
+    print(f"¡{personaje.nombre} ha subido de nivel!")
+    print(f"Nivel: {personaje.nivel}, Vida: {personaje.vida}, Daño: {personaje.daño}")
+
 # Prueba de combate completo
 def iniciar_juego():
     enemigos = [Orco(), Arpia(), Oscar()]
@@ -104,11 +116,15 @@ def iniciar_juego():
             case _:
                 print("Ese personaje no está disponible.")
 
+    vida_personaje_default = personaje.vida # Esta variable sirve para que el personaje recupere la vida al subir de nivel. Podríamos no hacerlo así y dejarlo con la que se queda al terminar cada combate
+
     for enemigo in enemigos:
         gana = combate(personaje, enemigo)
         if not gana:
             print("\nGAME OVER.")
             return # ?
+        else:
+            subir_nivel(personaje, vida_personaje_default)
 
     print("\n¡Has derrotado a todos los enemigos! ¡Victoria!")
 
