@@ -6,7 +6,7 @@ class Arpia(Enemigo):
 
     def atacar(self, personaje, defensa) -> None:
         # Ataca al personaje y le quita vida según el daño de la arpía
-        print(f"La arpía {self.nombre} ataca desde el aire con sus garras.")
+        print(f"La {self.nombre} ataca desde el aire con sus garras.")
         personaje.recibir_daño(self.daño, defensa)
 
     def habilidad_especial(self) -> None:

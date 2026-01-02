@@ -6,7 +6,7 @@ class Orco(Enemigo):
 
     def atacar(self, personaje, defensa) -> None: # Recibe la variable 'defensa' y se la manda a la función 'recibir_daño()'
         # El orco pega al personaje
-        print(f"El orco {self.nombre} ataca con su garrote.")
+        print(f"El {self.nombre} ataca con su garrote.")
         personaje.recibir_daño(self.daño, defensa)
 
     def habilidad_especial(self) -> None:
