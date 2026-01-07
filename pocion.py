@@ -43,7 +43,7 @@ class Pocion():
             
 # Las pociones son objetos que heredan de 'Pocion'
 class Vida(Pocion):
-    def  __init__(self, tipo = "Recuperación de vida", efecto = 30):
+    def  __init__(self, tipo = "Recuperación de vida", efecto = 50):
         super().__init__(tipo, efecto)
 
     def tomar_pocion(self, personaje):

@@ -100,7 +100,7 @@ class Personaje:
             if not self.esta_vivo():
                 print(f"¡Oh, no! ¡{self.nombre} ha muerto!")
             else:
-                print(f"¡{self.nombre} ha sido herido! Vida restante: {self.vida}")
+                print(f"¡{self.nombre} ha sido herido!")
         else:
             if self.esta_vivo():
                 print(f"{self.nombre} no recibe daño. Vida: {self.vida}")

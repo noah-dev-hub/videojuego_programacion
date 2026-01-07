@@ -51,7 +51,7 @@ def combate(personaje, enemigo) -> bool:
         print("4- Tomar poción")
         print("---------------------------")
         
-        opcion = input(f"\n¿Qué va a hacer {personaje.nombre}? ")
+        opcion = input(f"¿Qué va a hacer {personaje.nombre}? ")
         
         # =========================
         # 2.3) ACCIÓN DEL JUGADOR
@@ -92,7 +92,7 @@ def combate(personaje, enemigo) -> bool:
                 print(f"{personaje.nombre} no sabe hacer eso.")
                 continue
         
-        print(f"Enemigo: {enemigo.vida}") # He sacado este print aquí para no tener que repetir esta línea en cada ataque de cada personajee
+        print(f"\nEnemigo: {enemigo.vida}") # He sacado este print aquí para no tener que repetir esta línea en cada ataque de cada personajee
         # Si el enemigo muere, termina el combate
         if not enemigo.esta_vivo():
             print(f"\n{enemigo.nombre} ha sido derrotado.")
@@ -106,7 +106,7 @@ def combate(personaje, enemigo) -> bool:
 
         # Turno del enemigo
         enemigo.atacar(personaje, defensa) # Es aquí donde se manda la variable 'defensa' para que cumpla su función final
-        print(f"{personaje.nombre}: {personaje.vida}") # Ésta igual que con el enemigo
+        print(f"\n{personaje.nombre}: {personaje.vida}") # Ésta igual que con el enemigo
     
     # Si se sale del while, es porque uno de los dos ha muerto.
     # Devuelve True si el personaje sigue vivo, False si no.
@@ -194,3 +194,9 @@ if __name__ == "__main__":
 # - Defensa ahora reduce daño y muestra feedback (ver personaje.py).
 # - Habilidad especial del enemigo se activa al 50% de su vida inicial (no valor fijo).
 # - Subida de nivel: suma vida/daño (+15/+10 por defecto) sin resetear vida a un máximo fijo.
+
+
+# Notas 2026-01-07
+# - Añadida lista de personajes y sus estadísticas antes de elegir con cuál vamos a jugar.
+# - Aumentadas vida de personaje y cantidad de vida que recuperan las pociones.
+# - Organizados los espaciados en los prints para que sea más legible.
