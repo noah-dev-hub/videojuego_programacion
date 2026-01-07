@@ -130,13 +130,19 @@ def subir_nivel(personaje, vida_extra: int = 15, daño_extra: int = 10) -> None:
 def iniciar_juego():
     # Lista de enemigos en orden
     enemigos = [Orco(), Arpia(), Oscar()]
+    # Lista de personajes no utilizables para poder mostrar sus estadísticas antes de elegir uno de ellos.
+    personajes_muestra = [Guerrero("Guerrero"), Mago("Mago"), Ladron("Ladrón")]
+    for muestra in personajes_muestra:
+        print(str(muestra))
+    
     while True:
-        print("1- Guerrero\n2- Mago\n3- Ladrón")
+        print("\n1- Guerrero\n2- Mago\n3- Ladrón")
         opcion = input("¿Qué personaje elegirás? ")
         nombre = input("¿Qué nombre le pondrás? ").capitalize()
         match opcion:
             case "1":
                 personaje = Guerrero(nombre)
+                print(str(personaje))
                 break
             case "2":
                 personaje = Mago(nombre)
@@ -146,6 +152,8 @@ def iniciar_juego():
                 break
             case _:
                 print("Ese personaje no está disponible.")
+
+    print("El personaje ha sido creado.")
                 
     # =========================
     # 4.2) SECUENCIA DE COMBATES

@@ -13,7 +13,6 @@ class Personaje:
         self._daño = daño
         self._nivel = nivel
         self.escudo = 0  # Puntos de armadura/escudo que absorben daño antes de la vida
-        print("El personaje ha sido creado.")
 
     # =========================
     # GETTERS Y SETTERS
