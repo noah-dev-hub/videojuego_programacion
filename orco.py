@@ -1,7 +1,8 @@
 from enemigo import Enemigo
-from habilidad import Habilidad
+# Los ataques y habilidades de los enemigos son esencialmente propios de cada uno. No heredan de la clase 'Habilidad' como los personajes jugables
+# porque no comparten el mismo sistema que éstos.
 
-class Orco(Enemigo, Habilidad):
+class Orco(Enemigo):
     def __init__(self, nombre: str = "Orco", vida: int = 120, daño: int = 25, nivel: int = 1) -> None:
         super().__init__(nombre, vida, daño, nivel)
 
@@ -9,9 +10,6 @@ class Orco(Enemigo, Habilidad):
         # El orco pega al personaje
         print(f"El {self.nombre} ataca con su garrote.")
         personaje.recibir_daño(self.daño, defensa)
-
-    def defender(self):
-        return super().defender()
 
     def habilidad_especial(self) -> None:
         # Se enfurece: sube daño

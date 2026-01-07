@@ -106,6 +106,9 @@ class Personaje:
             if self.esta_vivo():
                 print(f"{self.nombre} no recibe daño. Vida: {self.vida}")
 
+    def __str__(self) -> str:  # Copio aquí lo que hiciste en 'Enemigo' para mostrar los datos antes de elegir personaje
+        return f"{self.nombre} - Vida: {self.vida} - Daño: {self.daño} - Nivel: {self.nivel}"
+
 # CAMBIOS RECIENTES (2026-01-02)
 # - Añadido atributo 'escudo' al personaje (armadura que absorbe daño).
 # - 'recibir_daño' ahora aplica: escudo -> defensa (reduce a la mitad) -> vida, con mensajes de feedback.

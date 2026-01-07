@@ -1,7 +1,6 @@
 from enemigo import Enemigo
-from habilidad import Habilidad
 
-class Arpia(Enemigo, Habilidad):
+class Arpia(Enemigo):
     def __init__(self, nombre: str = "Arpía", vida: int = 90, daño: int = 20, nivel: int = 2) -> None:
         super().__init__(nombre, vida, daño, nivel)
 
@@ -9,9 +8,6 @@ class Arpia(Enemigo, Habilidad):
         # Ataca al personaje y le quita vida según el daño de la arpía
         print(f"La {self.nombre} ataca desde el aire con sus garras.")
         personaje.recibir_daño(self.daño, defensa)
-
-    def defender(self):
-        return super().defender()
 
     def habilidad_especial(self) -> None:
         # Se cura un poco para aguantar más
