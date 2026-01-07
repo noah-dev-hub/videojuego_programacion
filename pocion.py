@@ -62,7 +62,7 @@ class Daño(Pocion):
 
 class Escudo(Pocion): # Le quita daño al enemigo, pero se lo quita para siempre. Si queremos que sea así, perfecto. Si no, hay que encontrar la forma de arreglarlo.
     # CAMBIO (2026-01-02): Se ha 'arreglado' para que el escudo sea una armadura que absorbe X puntos de daño (no modifica al enemigo).
-    def  __init__(self, tipo = "Generación de escudo", efecto = 15):
+    def  __init__(self, tipo = "Generación de escudo", efecto = 50):
         super().__init__(tipo, efecto)
 
     def tomar_pocion(self, personaje):
