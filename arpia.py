@@ -12,5 +12,5 @@ class Arpia(Enemigo):
     def habilidad_especial(self) -> None:
         # Se cura un poco para aguantar más
         self.vida += 10
-        print(f"La arpía {self.nombre} se eleva y recupera 10 de vida.")
+        print(f"La {self.nombre} se eleva y recupera 10 de vida.")
         print(f"{self.nombre}: {self.vida}")

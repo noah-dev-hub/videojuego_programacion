@@ -14,5 +14,5 @@ class Orco(Enemigo):
     def habilidad_especial(self) -> None:
         # Se enfurece: sube daño
         self.daño += 5
-        print(f"El orco {self.nombre} entra en furia y aumenta su daño en +5.")
+        print(f"El {self.nombre} entra en furia y aumenta su daño en +5.")
         print(f"Daño actual del orco: {self.daño}")
