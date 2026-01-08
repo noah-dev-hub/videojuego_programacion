@@ -72,15 +72,15 @@ class Personaje:
         2) Si el jugador se defendió, el daño restante se reduce a la mitad.
         3) Lo que quede reduce la vida.
         """
-        
+        # Nos aseguramos de que el daño no sea negativo. Si la cantidad es negativa, se pone en 0.
         daño = max(0, int(cantidad))
 
         # 1) Absorción por escudo
         # El escudo absorbe el daño antes de que llegue a la vida.
         if self.escudo > 0 and daño > 0:
             absorbido = min(self.escudo, daño)
-            self.escudo -= absorbido
-            daño -= absorbido
+            self.escudo -= absorbido # Se reduce el escudo por la cantidad absorbida.
+            daño -= absorbido # El daño restante despues de absorberlo con el escudo.
             print(f"El escudo absorbe {absorbido} de daño. Escudo restante: {self.escudo}")
         elif self.escudo > 0 and daño == 0:
             print(f"El escudo permanece intacto. Escudo actual: {self.escudo}")
@@ -95,13 +95,13 @@ class Personaje:
             print(f"¡{self.nombre} se defiende! No recibe daño.")
 
         # 3) Aplicación a vida
-        if daño > 0:
-            self.vida = max(0, self.vida - daño)
+        if daño > 0: # Si todavía hay daño después de la defensa y el escudo.
+            self.vida = max(0, self.vida - daño) # Restamos el daño de la vida, asegurándonos de que no sea negativa
             if not self.esta_vivo():
                 print(f"¡Oh, no! ¡{self.nombre} ha muerto!")
             else:
                 print(f"¡{self.nombre} ha sido herido!")
-        else:
+        else: # Si no queda daño por aplicar (por ejemplo, si fue absorbido todo por el escudo).
             if self.esta_vivo():
                 print(f"{self.nombre} no recibe daño. Vida: {self.vida}")
 

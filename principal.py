@@ -124,7 +124,7 @@ def subir_nivel(personaje, vida_extra: int = 15, daño_extra: int = 10) -> None:
     print(f"Nivel: {personaje.nivel}, Vida: {personaje.vida}, Daño: {personaje.daño}")
 
 # =========================
-# 4) INICIAR JUEGO (menú inicial + secuencia de combates)
+# 4) INICIAR JUEGO
 # =========================
 # Prueba de combate completo
 def iniciar_juego():
