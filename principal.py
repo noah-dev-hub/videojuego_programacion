@@ -142,7 +142,6 @@ def iniciar_juego():
         match opcion:
             case "1":
                 personaje = Guerrero(nombre)
-                print(str(personaje))
                 break
             case "2":
                 personaje = Mago(nombre)
